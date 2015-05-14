@@ -1,0 +1,53 @@
+html, body {
+  width:100%;
+  height:100%;
+  margin: 0;
+
+  font-family:Lucida Sans Unicode;
+} /* just to be sure these are full screen*/
+
+canvas { display:block; } /* To remove the scrollbars */
+
+nav {
+  position: absolute;
+  z-index: 1;
+  height: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  min-width: 70px;
+  background: white;
+  border-right: 1px solid #dfdfdf;
+  transition: 0.3s;
+}
+
+nav.hidden {
+  left: -72px;
+}
+
+.menu-toggle{
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 70px;
+  height: 30px;
+  text-align: center;
+  margin: 0;
+  padding: 20px 0px;
+  background: white;
+  border: 1px solid #dfdfdf;
+  border-left: none;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav ul li {
+  padding: 20px 10px;
+  text-align: center;
+  font-size:
+}

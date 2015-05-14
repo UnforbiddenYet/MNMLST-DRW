@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="MNMLSTApp" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="height=device-height, width=device-width" />
+  <title>Canvas</title>
+  <link rel="stylesheet" href="css/app.css">
+  <script type="text/javascript" src="js/lib/angular/angular.js"></script>
+
+  <script type="text/javascript" src="js/app.js"></script>
+  <script type="text/javascript" src="js/controllers.js"></script>
+</head>
+<body ng-controller="XDrawer">
+  <canvas>
+    Your browser does not support canvas element.
+  </canvas>
+
+  <span class="menu-toggle" ng-click="menuHidden = !menuHidden">M</span>
+  <nav ng-class="{'hidden': menuHidden}">
+    <ul>
+      <li ng-repeat="method in drawingMethods" ng-click="setDrawingMethod(method.drawingFunction)" ng-bind="method.title"></li>
+      <li ng-click="clear()">
+        Clear
+      </li>
+      <li ng-click="toImage()">
+        Save
+      </li>
+    </ul>
+  </nav>
+</body>
+</html>
