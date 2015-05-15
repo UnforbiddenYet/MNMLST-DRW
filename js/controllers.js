@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 /* Controllers */
 var canvas, ctx, currentDrawingMethod;
@@ -64,7 +64,7 @@ function addListeners(){
 			do{
 				totalOffsetX += curElement.offsetLeft;
 				totalOffsetY += curElement.offsetTop;
-			} while(curElement = curElement.offsetParent)
+			} while(curElement === curElement.offsetParent);
 			x = e.pageX - el.offsetLeft;
 			y = e.pageY - el.offsetTop;
 		}
@@ -72,30 +72,29 @@ function addListeners(){
 		return {
 			x: x,
 			y: y
-		}
+		};
 	}
 
 	function getDrawingMethod(){
 		var method = drawingMethods[currentDrawingMethod];
-		return method == null ? drawingMethods.default : method;
+		return method === undefined ? drawingMethods.default : method;
 	}
 
 	function touchStart(evt){
 		var touches = evt.changedTouches;
 
 		for (var i=0; i < touches.length; i++) {
-			var coords = getCoordinates(touches[i], canvas)
+			var coords = getCoordinates(touches[i], canvas);
 			oldPoint = coords;
-			console.log(oldPoint)
 			getDrawingMethod()(ctx, coords);
 		}
 	}
 
-	function touchMove(evt) {;
+	function touchMove(evt) {
 		var touches = evt.changedTouches;
 
 		for (var i=0; i < touches.length; i++) {
-			var coords = getCoordinates(touches[i], canvas)
+			var coords = getCoordinates(touches[i], canvas);
 			getDrawingMethod()(ctx, coords, i);
 		}
 	}
@@ -128,14 +127,8 @@ function drawArc(ctx, data){
 	ctx.stroke();
 }
 
-// Converts canvas to an image
-function covertToImage () {
-	var image = new Image();
-	image.src = canvas.toDataURL("image/png");
-	return image;
-}
 
-MNMLSTApp.controller('XDrawer', ['$scope', function($scope) {
+window.MNMLSTApp.controller('XDrawer', ['$scope', function($scope) {
 
 	// canvas
 	setUp();
@@ -154,15 +147,15 @@ MNMLSTApp.controller('XDrawer', ['$scope', function($scope) {
 	$scope.clear = function(){
 		$scope.menuHidden = true;
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
-	}
+	};
 
 	$scope.setDrawingMethod = function(title){
 		$scope.menuHidden = true;
 		currentDrawingMethod = title;
-	}
+	};
 
 	$scope.toImage = function(){
 		window.open(canvas.toDataURL("image/png"), "_blank");
-	}
+	};
 
 }]);
